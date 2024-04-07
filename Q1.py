@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     # Visualization loop
     while True:
-        # Clear the screen (for better visualization in console)
+        # Clear robot screen (for better visualization in console)
         print("\033[H\033[J")
         
         env.display(robot.position)
