@@ -1,7 +1,7 @@
 import copy
 import time
 
-class GridCell:
+class Grid:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -32,7 +32,7 @@ class Environment:
 
 class Robot:
     def __init__(self, x, y, environment):
-        self.position = GridCell(x, y)
+        self.position = Grid(x, y)
         self.environment = environment
         self.visited = set()
         self.path = []
@@ -45,7 +45,7 @@ class Robot:
         if 0 <= new_x < self.environment.width and 0 <= new_y < self.environment.height \
                 and not self.environment.is_obstacle(new_x, new_y):
             self.visited.add((self.position.x, self.position.y))
-            self.path.append(GridCell(new_x, new_y))
+            self.path.append(Grid(new_x, new_y))
             self.position.x = new_x
             self.position.y = new_y
 
@@ -61,12 +61,10 @@ class Robot:
                 self.position.x = last_position.x
                 self.position.y = last_position.y
 
-# Example usage
 if __name__ == "__main__":
-    # Create an environment grid with width 10 and height 10
-    env = Environment(10, 10)
+    env = Environment(6, 10)
 
-    # Add static obstacles
+    # static obstacles
     env.add_obstacle(3, 3)
     env.add_obstacle(4, 3)
     env.add_obstacle(5, 3)
@@ -76,7 +74,7 @@ if __name__ == "__main__":
     env.add_obstacle(4, 5)
     env.add_obstacle(5, 5)
 
-    # Create a robot and set its initial position
+    # robot initial position
     robot = Robot(1, 1, env)
 
     # Visualization loop
@@ -84,10 +82,9 @@ if __name__ == "__main__":
         # Clear the screen (for better visualization in console)
         print("\033[H\033[J")
         
-        # Display the environment
         env.display(robot.position)
         
-        # Move the robot (example movement)
+        # robot movement
         robot.move(1, 0)  # Move right
         
         # Clean the current position
