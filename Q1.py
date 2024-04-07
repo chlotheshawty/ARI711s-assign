@@ -66,13 +66,9 @@ if __name__ == "__main__":
 
     # static obstacles
     env.add_obstacle(3, 3)
-    env.add_obstacle(4, 3)
-    env.add_obstacle(5, 3)
-    env.add_obstacle(3, 4)
-    env.add_obstacle(5, 4)
-    env.add_obstacle(3, 5)
+    env.add_obstacle(5, 7)
     env.add_obstacle(4, 5)
-    env.add_obstacle(5, 5)
+
 
     # robot initial position
     robot = Robot(1, 1, env)
