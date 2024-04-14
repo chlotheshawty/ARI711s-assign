@@ -92,3 +92,19 @@ if __name__ == "__main__":
 
         # Sleep for a short period to slow down visualization
         time.sleep(0.5)
+
+def heuristic(robot_position, target_position, obstacle_data):
+    # Calculate the distance between the robot's position and the target position
+    distance = abs(robot_position.x - target_position.x) + abs(robot_position.y - target_position.y)
+    
+    # Estimate the likelihood of encountering obstacles along the path
+    obstacle_likelihood = 0
+    for x in range(min(robot_position.x, target_position.x), max(robot_position.x, target_position.x) + 1):
+        for y in range(min(robot_position.y, target_position.y), max(robot_position.y, target_position.y) + 1):
+            obstacle_likelihood += obstacle_data.get((x, y), 0)  # Lookup obstacle frequency in the data
+    
+    # Combine distance and obstacle likelihood to compute the heuristic value
+    heuristic_value = distance + obstacle_likelihood
+    
+    return heuristic_value
+
